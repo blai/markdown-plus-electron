@@ -6,24 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Markdown Plus</title>
     <link href="../src/icon.png" rel="shortcut icon" type="image/png" />
-    <link rel="stylesheet" href="./window.css"/>
+    <link href="./../bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="./../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
+    <link href="stylesheet" href="./window.css" />
 </head>
 
 <body>
-  <div class="panel">
-    <button id="saveButton">save</button>
-  </div>
-  <iframe class="editor" src="../src/index.html" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+    <div class="panel">
+        <button id="saveButton">save</button>
+    </div>
+    <iframe class="editor" src="../src/index.html" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
-  <!-- Electron WindowのExport無効化 -->
-  <script>
-    window.nodeRequire = require;
-    delete window.require;
-    delete window.exports;
-    delete window.module;
-  </script>
-  <script src="./../bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="./window.js"></script>
+    <!-- Electron WindowのExport無効化 -->
+    <script>
+        window.nodeRequire = require;
+        delete window.require;
+        delete window.exports;
+        delete window.module;
+    </script>
+    <script src="./../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./window.js"></script>
 </body>
 
 </html>
