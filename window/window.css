@@ -1,19 +1,16 @@
-html {
-    height: 100%;
-}
+/* スクロール無効 */
 
+html,
 body {
-    height: 100%;
-    margin: 0;
+    overflow: hidden
 }
 
-.panel {
+.editor-controll {
     width: 100%;
-    height: 5%;
+    height: 50px;
 }
 
 .editor-markdown {
     width: 100%;
-    height: 95%;
     border: none;
 }
