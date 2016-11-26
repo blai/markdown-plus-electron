@@ -2,16 +2,18 @@ var remote = require('electron').remote;
 var dialog = remote.dialog;
 var browserWindow = remote.BrowserWindow;
 var fs = require('fs');
-var editor;
 
+var editor;
 $(() => {
-    editor = $(".editor-markdown")[0].contentWindow.editor;
+    $('.editor-markdown').on('load', (self) => {
+        editor = $('.editor-markdown')[0].contentWindow.editor;
+    });
 
     $('.btn-save').click((e) => {
         saveAsFile();
     });
 
-    $('.editor-markdown').css("height", String($(window).height() - $('.editor-controll').height()) + "px");
+    $('.editor-markdown').css('height', String($(window).height() - $('.editor-controll').height()) + 'px');
 });
 
 const saveAsFile = () => {
