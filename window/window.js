@@ -13,8 +13,16 @@ $(() => {
         saveAsFile();
     });
 
-    $('.editor-markdown').css('height', String($(window).height() - $('.editor-controll').height()) + 'px');
+    resizeEditor();
 });
+
+$(window).resize(function() {
+    resizeEditor();
+});
+
+const resizeEditor = () => {
+    $('.editor-markdown').css('height', String($(window).height() - $('.editor-controll').height()) + 'px');
+}
 
 const saveAsFile = () => {
     var fwin = browserWindow.getFocusedWindow();
