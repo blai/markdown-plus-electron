@@ -20,7 +20,7 @@ class EditorWindow {
             this.resizeEditor();
         });
 
-        $(window).resize(function() {
+        $(window).resize(() => {
             this.resizeEditor();
         });
     }

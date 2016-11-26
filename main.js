@@ -9,36 +9,60 @@ let win;
 function installMenu() {
     // アプリケーションメニュー設定
     let template = [{
-        label: 'Edit',
-        submenu: [{
-                role: 'undo'
-            },
-            {
-                role: 'redo'
-            },
-            {
-                type: 'separator'
-            },
-            {
-                role: 'cut'
-            },
-            {
-                role: 'copy'
-            },
-            {
-                role: 'paste'
-            },
-            {
-                role: 'pasteandmatchstyle'
-            },
-            {
-                role: 'delete'
-            },
-            {
-                role: 'selectall'
-            }
-        ]
-    }];
+            label: 'Edit',
+            submenu: [{
+                    role: 'undo'
+                },
+                {
+                    role: 'redo'
+                },
+                {
+                    type: 'separator'
+                },
+                {
+                    role: 'cut'
+                },
+                {
+                    role: 'copy'
+                },
+                {
+                    role: 'paste'
+                },
+                {
+                    role: 'delete'
+                },
+                {
+                    role: 'selectall'
+                }
+            ]
+        }, {
+            label: 'File',
+            submenu: [{
+                label: '保存',
+                accelerator: 'command+s',
+                click: () => {}
+            }]
+        },
+        {
+            label: 'View',
+            submenu: [{
+                    label: 'Reload',
+                    accelerator: 'Command+R',
+                    click: function() { win.reload(); }
+                },
+                {
+                    label: 'Toggle Full Screen',
+                    accelerator: 'Ctrl+Command+F',
+                    click: function() { win.setFullScreen(!win.isFullScreen()); }
+                },
+                {
+                    label: 'Toggle Developer Tools',
+                    accelerator: 'Alt+Command+I',
+                    click: function() { win.toggleDevTools(); }
+                },
+            ]
+        }
+    ];
 
     if (process.platform === 'darwin') {
         template.unshift({
