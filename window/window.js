@@ -1,54 +1,33 @@
-var remote = require('electron').remote;
-var dialog = remote.dialog;
-var browserWindow = remote.BrowserWindow;
-var fs = require('fs');
+const remote = require('electron').remote;
+const dialog = remote.dialog;
+const browserWindow = remote.BrowserWindow;
+const fs = require('fs');
 
-var editor;
-$(() => {
-    $('.editor-markdown').on('load', () => {
-        editor = $('.editor-markdown')[0].contentWindow.editor;
-    });
+class EditorWindow {
+    constructor() {
+        this.editor = null;
+        $(() => {
+            this.fileManager = new FileManager();
 
-    $('.btn-save').click((event) => {
-        saveAsFile();
-    });
+            $('.editor-markdown').on('load', () => {
+                this.editor = $('.editor-markdown')[0].contentWindow.editor;
+            });
 
-    resizeEditor();
-});
+            $('.btn-save').click((event) => {
+                this.fileManager.saveAsFile(this.editor.session.getValue());
+            });
 
-$(window).resize(function() {
-    resizeEditor();
-});
+            this.resizeEditor();
+        });
 
-const resizeEditor = () => {
-    $('.editor-markdown').css('height', String($(window).height() - $('.editor-controll').height()) + 'px');
+        $(window).resize(function() {
+            this.resizeEditor();
+        });
+    }
+
+    resizeEditor() {
+        $('.editor-markdown').css('height', String($(window).height() - $('.editor-controll').height()) + 'px');
+    }
 }
 
-const saveAsFile = () => {
-    var fwin = browserWindow.getFocusedWindow();
-    dialog.showSaveDialog(
-        fwin, {
-            properties: ['openFile'],
-            filters: [{
-                name: 'markdownファイル',
-                extensions: ['md']
-            }]
-        },
-        // セーブ用ダイアログが閉じられた後のコールバック関数
-        (fileName) => {
-            if (fileName) {
-                var data = editor.session.getValue();
-                writeFile(fileName, data);
-            }
-        }
-    );
-}
-
-const writeFile = (path, data) => {
-    fs.writeFile(path, data, (error) => {
-        if (error != null) {
-            alert('error: ' + error);
-            return;
-        }
-    });
-}
+const editorWindow = new EditorWindow();
