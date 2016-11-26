@@ -5,11 +5,11 @@ var fs = require('fs');
 
 var editor;
 $(() => {
-    $('.editor-markdown').on('load', (self) => {
+    $('.editor-markdown').on('load', () => {
         editor = $('.editor-markdown')[0].contentWindow.editor;
     });
 
-    $('.btn-save').click((e) => {
+    $('.btn-save').click((event) => {
         saveAsFile();
     });
 
