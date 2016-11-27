@@ -34,10 +34,8 @@ class EditorWindow {
         ipc.on('global-shortcut-message', (sender, message) => {
             switch (message) {
                 case 'save-as':
-                    {
-                        this.save();
-                        break;
-                    }
+                    this.save();
+                    break;
             }
         });
     }
