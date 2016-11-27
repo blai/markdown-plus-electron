@@ -16,10 +16,6 @@ class EditorWindow {
                 this.editor = $('.editor-markdown')[0].contentWindow.editor;
             });
 
-            $('.btn-save').click((event) => {
-                this.save();
-            });
-
             this.resizeEditor();
             this.registerGlobalMessage();
         });
