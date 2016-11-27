@@ -7,6 +7,7 @@ const fs = require('fs');
 
 class EditorWindow {
     constructor() {
+        this.filePath = null;
         this.editor = null;
         $(() => {
             this.fileManager = new FileManager();
@@ -16,7 +17,7 @@ class EditorWindow {
             });
 
             $('.btn-save').click((event) => {
-                this.fileManager.saveAsFile(this.getEditorText());
+                this.save();
             });
 
             this.resizeEditor();
@@ -34,7 +35,7 @@ class EditorWindow {
             switch (message) {
                 case 'save-as':
                     {
-                        this.fileManager.saveAsFile(this.getEditorText());
+                        this.save();
                         break;
                     }
             }
@@ -43,6 +44,14 @@ class EditorWindow {
 
     resizeEditor() {
         $('.editor-markdown').css('height', String($(window).height() - $('.editor-controll').height()) + 'px');
+    }
+
+    save() {
+        if (this.fileManager.lastSaveFilePath == null) {
+            this.fileManager.saveAsFile(this.getEditorText());
+        } else {
+            this.fileManager.writeFile(this.fileManager.lastSaveFilePath, this.getEditorText());
+        }
     }
 
     getEditorText() {

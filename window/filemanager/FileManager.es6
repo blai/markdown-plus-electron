@@ -1,6 +1,6 @@
 class FileManager {
     constructor() {
-
+        this.lastSaveFilePath = null;
     }
 
     saveAsFile(text) {
@@ -17,6 +17,7 @@ class FileManager {
             (filePath) => {
                 if (filePath) {
                     this.writeFile(filePath, text);
+                    this.lastSaveFilePath = filePath;
                 }
             }
         );

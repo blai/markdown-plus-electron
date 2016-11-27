@@ -10,6 +10,11 @@ body {
     height: 50px;
 }
 
+.btn-save {
+    width: 50%;
+    height: 50px;
+}
+
 .editor-markdown {
     width: 100%;
     border: none;
