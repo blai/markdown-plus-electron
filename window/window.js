@@ -16,7 +16,7 @@ class EditorWindow {
             });
 
             $('.btn-save').click((event) => {
-                this.fileManager.saveAsFile(this.editor.session.getValue());
+                this.fileManager.saveAsFile(this.getEditorText());
             });
 
             this.resizeEditor();
@@ -34,7 +34,7 @@ class EditorWindow {
             switch (message) {
                 case 'save-as':
                     {
-                        this.fileManager.saveAsFile(this.editor.session.getValue());
+                        this.fileManager.saveAsFile(this.getEditorText());
                         break;
                     }
             }
@@ -43,6 +43,10 @@ class EditorWindow {
 
     resizeEditor() {
         $('.editor-markdown').css('height', String($(window).height() - $('.editor-controll').height()) + 'px');
+    }
+
+    getEditorText() {
+        return this.editor.session.getValue();
     }
 }
 
