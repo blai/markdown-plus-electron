@@ -1,4 +1,6 @@
-const remote = require('electron').remote;
+const electron = require('electron');
+const remote = electron.remote;
+const ipc = electron.ipcRenderer;
 const dialog = remote.dialog;
 const browserWindow = remote.BrowserWindow;
 const fs = require('fs');
@@ -18,10 +20,24 @@ class EditorWindow {
             });
 
             this.resizeEditor();
+            this.registerGlobalMessage();
         });
 
         $(window).resize(() => {
             this.resizeEditor();
+        });
+    }
+
+    registerGlobalMessage() {
+        // 非同期でメインプロセスからのメッセージを受信する
+        ipc.on('global-shortcut-message', (sender, message) => {
+            switch (message) {
+                case 'save-as':
+                    {
+                        this.fileManager.saveAsFile(this.editor.session.getValue());
+                        break;
+                    }
+            }
         });
     }
 

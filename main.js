@@ -40,7 +40,9 @@ function installMenu() {
             submenu: [{
                 label: '保存',
                 accelerator: 'command+s',
-                click: () => {}
+                click: () => {
+                    win.webContents.send('global-shortcut-message', 'save-as');
+                }
             }]
         },
         {
