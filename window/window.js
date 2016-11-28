@@ -30,7 +30,7 @@ class EditorWindow {
         ipc.on('global-shortcut-message', (sender, message) => {
             switch (message) {
                 case 'open':
-                    this.fileManager.openFile();
+                    this.open();
                     break;
                 case 'save-as':
                     this.save();
@@ -41,6 +41,13 @@ class EditorWindow {
 
     resizeEditor() {
         $('.editor-markdown').css('height', String($(window).height() - $('.editor-controll').height()) + 'px');
+    }
+
+    open() {
+        this.fileManager.openFile()
+            .then((text) => {
+                this.editor.session.setValue(text);
+            });
     }
 
     save() {

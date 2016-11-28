@@ -17,14 +17,14 @@ class FileManager {
                 // 開くダイアログが閉じられた後のコールバック関数
                 (filePath) => {
                     if (filePath) {
-                        fs.open(filePath, 'a+', (err, fd) => {
+                        // TODO: 複数開く
+                        fs.readFile(filePath[0], 'utf-8', (error, text) => {
                             if (error != null) {
-                                reject(err);
+                                reject(error);
                                 return;
                             }
 
-                            console.log(fd);
-                            resolve();
+                            resolve(text);
                         });
                     } else {
                         reject('file not found');
