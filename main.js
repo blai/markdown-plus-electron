@@ -1,9 +1,7 @@
 const { app, Menu } = require('electron');
 const WindowManager = require('./windowmanager/WindowManager.es6');
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-const windowManager = new WindowManager();
+let windowManager = new WindowManager();
 
 function installMenu() {
     // アプリケーションメニュー設定
