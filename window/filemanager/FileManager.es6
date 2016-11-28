@@ -6,7 +6,7 @@ class FileManager {
     openFile() {
         return new Promise((resolve, reject) => {
             let fwin = browserWindow.getFocusedWindow();
-            dialog.showSaveDialog(
+            dialog.showOpenDialog(
                 fwin, {
                     properties: ['openFile'],
                     filters: [{
@@ -17,7 +17,6 @@ class FileManager {
                 // 開くダイアログが閉じられた後のコールバック関数
                 (filePath) => {
                     if (filePath) {
-                        // TODO: 書き込みモードでダイアログが起動してしまう
                         fs.open(filePath, 'a+', (err, fd) => {
                             if (error != null) {
                                 reject(err);
