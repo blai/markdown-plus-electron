@@ -21,24 +21,29 @@ module.exports = class WindowManager {
         }));
 
         win.on('focus', () => {
-            console.log("focus");
             this.currentWindow = win;
         });
 
         win.on('closed', () => {
-            // 閉じた時にWindowsから削除
-            this.windows.some((window, i) => {
-                if (window == win) {
-                    this.windows.splice(i, 1);
-                }
-            });
-            win = null;
+            this.removeWindow(win);
         });
 
         this.windows.push(win);
     }
 
-    deleteWindow() {
+    deleteCurrentWindow() {
+        this.currentWindow.close();
+    }
 
+    /**
+     * 閉じた時にWindowsから削除
+     */
+    removeWindow(targetWindow) {
+        this.windows.some((window, i) => {
+            if (window == targetWindow) {
+                this.windows.splice(i, 1);
+            }
+        });
+        targetWindow = null;
     }
 }

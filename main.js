@@ -55,19 +55,33 @@ function installMenu() {
         {
             label: 'View',
             submenu: [{
+                    label: 'New',
+                    accelerator: 'Command+N',
+                    click: () => {
+                        windowManager.createWindow();
+                    }
+                },
+                {
+                    label: 'Close',
+                    accelerator: 'Command+W',
+                    click: () => {
+                        windowManager.deleteCurrentWindow();
+                    }
+                },
+                {
                     label: 'Reload',
                     accelerator: 'Command+R',
-                    click: function() { windowManager.currentWindow.reload(); }
+                    click: () => { windowManager.currentWindow.reload(); }
                 },
                 {
                     label: 'Toggle Full Screen',
                     accelerator: 'Ctrl+Command+F',
-                    click: function() { windowManager.currentWindow.setFullScreen(!windowManager.currentWindow.isFullScreen()); }
+                    click: () => { windowManager.currentWindow.setFullScreen(!windowManager.currentWindow.isFullScreen()); }
                 },
                 {
                     label: 'Toggle Developer Tools',
                     accelerator: 'Alt+Command+I',
-                    click: function() { windowManager.currentWindow.toggleDevTools(); }
+                    click: () => { windowManager.currentWindow.toggleDevTools(); }
                 },
             ]
         }
