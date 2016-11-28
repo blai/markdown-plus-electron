@@ -1,10 +1,9 @@
-const { app, BrowserWindow, Menu } = require('electron');
-const path = require('path');
-const url = require('url');
+const { app, Menu } = require('electron');
+const WindowManager = require('./windowmanager/WindowManager.es6');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win;
+const windowManager = new WindowManager();
 
 function installMenu() {
     // アプリケーションメニュー設定
@@ -41,14 +40,14 @@ function installMenu() {
                     label: '保存',
                     accelerator: 'command+s',
                     click: () => {
-                        win.webContents.send('global-shortcut-message', 'save-as');
+                        windowManager.currentWindow.webContents.send('global-shortcut-message', 'save-as');
                     }
                 },
                 {
                     label: '開く',
                     accelerator: 'command+o',
                     click: () => {
-                        win.webContents.send('global-shortcut-message', 'open');
+                        windowManager.currentWindow.webContents.send('global-shortcut-message', 'open');
                     }
                 }
             ]
@@ -58,17 +57,17 @@ function installMenu() {
             submenu: [{
                     label: 'Reload',
                     accelerator: 'Command+R',
-                    click: function() { win.reload(); }
+                    click: function() { windowManager.currentWindow.reload(); }
                 },
                 {
                     label: 'Toggle Full Screen',
                     accelerator: 'Ctrl+Command+F',
-                    click: function() { win.setFullScreen(!win.isFullScreen()); }
+                    click: function() { windowManager.currentWindow.setFullScreen(!windowManager.currentWindow.isFullScreen()); }
                 },
                 {
                     label: 'Toggle Developer Tools',
                     accelerator: 'Alt+Command+I',
-                    click: function() { win.toggleDevTools(); }
+                    click: function() { windowManager.currentWindow.toggleDevTools(); }
                 },
             ]
         }
@@ -113,32 +112,12 @@ function installMenu() {
     Menu.setApplicationMenu(menu);
 }
 
-function createWindow() {
-    // Create the browser window.
-    win = new BrowserWindow({ width: 800, height: 600, 'node-integration': false });
-
-    // and load the index.html of the app.
-    win.loadURL(url.format({
-        pathname: path.join(__dirname, './window/window.html'),
-        protocol: 'file:',
-        slashes: true
-    }));
-
-    // Emitted when the window is closed.
-    win.on('closed', () => {
-        // Dereference the window object, usually you would store windows
-        // in an array if your app supports multi windows, this is the time
-        // when you should delete the corresponding element.
-        win = null;
-    });
-}
-
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
     installMenu();
-    createWindow();
+    windowManager.createWindow();
 });
 
 // Quit when all windows are closed.
@@ -153,8 +132,8 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (win === null) {
-        createWindow();
+    if (windowManager.windows.length == 0) {
+        windowManager.createWindow();
     }
 });
 
