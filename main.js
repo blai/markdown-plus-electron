@@ -36,14 +36,14 @@ function installMenu() {
             label: 'File',
             submenu: [{
                     label: '保存',
-                    accelerator: 'command+s',
+                    accelerator: 'command+S',
                     click: () => {
                         windowManager.currentWindow.webContents.send('global-shortcut-message', 'save-as');
                     }
                 },
                 {
                     label: '開く',
-                    accelerator: 'command+o',
+                    accelerator: 'command+O',
                     click: () => {
                         windowManager.currentWindow.webContents.send('global-shortcut-message', 'open');
                     }
