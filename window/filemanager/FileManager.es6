@@ -3,8 +3,40 @@ class FileManager {
         this.lastSaveFilePath = null;
     }
 
+    openFile() {
+        return new Promise((resolve, reject) => {
+            let fwin = browserWindow.getFocusedWindow();
+            dialog.showSaveDialog(
+                fwin, {
+                    properties: ['openFile'],
+                    filters: [{
+                        name: 'markdownファイル',
+                        extensions: ['md']
+                    }]
+                },
+                // 開くダイアログが閉じられた後のコールバック関数
+                (filePath) => {
+                    if (filePath) {
+                        // TODO: 書き込みモードでダイアログが起動してしまう
+                        fs.open(filePath, 'a+', (err, fd) => {
+                            if (error != null) {
+                                reject(err);
+                                return;
+                            }
+
+                            console.log(fd);
+                            resolve();
+                        });
+                    } else {
+                        reject('file not found');
+                    }
+                }
+            );
+        });
+    }
+
     saveAsFile(text) {
-        var fwin = browserWindow.getFocusedWindow();
+        let fwin = browserWindow.getFocusedWindow();
         dialog.showSaveDialog(
             fwin, {
                 properties: ['openFile'],

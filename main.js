@@ -38,12 +38,20 @@ function installMenu() {
         }, {
             label: 'File',
             submenu: [{
-                label: '保存',
-                accelerator: 'command+s',
-                click: () => {
-                    win.webContents.send('global-shortcut-message', 'save-as');
+                    label: '保存',
+                    accelerator: 'command+s',
+                    click: () => {
+                        win.webContents.send('global-shortcut-message', 'save-as');
+                    }
+                },
+                {
+                    label: '開く',
+                    accelerator: 'command+o',
+                    click: () => {
+                        win.webContents.send('global-shortcut-message', 'open');
+                    }
                 }
-            }]
+            ]
         },
         {
             label: 'View',

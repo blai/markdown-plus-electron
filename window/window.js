@@ -29,6 +29,9 @@ class EditorWindow {
         // 非同期でメインプロセスからのメッセージを受信する
         ipc.on('global-shortcut-message', (sender, message) => {
             switch (message) {
+                case 'open':
+                    this.fileManager.openFile();
+                    break;
                 case 'save-as':
                     this.save();
                     break;
