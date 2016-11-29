@@ -15,6 +15,10 @@ body {
     height: 32px;
 }
 
+.editor-controll-chart {
+    float: right;
+}
+
 .editor-markdown {
     width: 100%;
     border: none;
