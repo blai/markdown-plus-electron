@@ -24,6 +24,7 @@ class FileManager {
                                 return;
                             }
 
+                            this.lastSaveFilePath = filePath[0];
                             resolve(text);
                         });
                     } else {
