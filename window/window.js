@@ -14,6 +14,8 @@ class EditorWindow {
 
             $('.editor-markdown').on('load', () => {
                 this.editor = $('.editor-markdown')[0].contentWindow.editor;
+                // エディタの同期を無効化
+                $('.editor-markdown')[0].contentWindow.sync_editor = function(){};
             });
 
             this.resizeEditor();
