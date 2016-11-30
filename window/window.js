@@ -60,6 +60,11 @@ class EditorWindow {
             this.editor.insert('```chart\n{\n  "type": "polarArea",\n  "data": {\n    "datasets": [\n      {\n        "data": [\n          11,\n          16,\n          7,\n          3,\n          14\n        ],\n        "backgroundColor": [\n          "#FF6384",\n          "#4BC0C0",\n          "#FFCE56",\n          "#E7E9ED",\n          "#36A2EB"\n        ],\n        "label": "My dataset"\n      }\n    ],\n    "labels": [\n      "Red",\n      "Green",\n      "Yellow",\n      "Grey",\n      "Blue"\n    ]\n  },\n  "options": {}\n}\n```');
             $('.editor-markdown').focus();
         });
+
+        $('#editor-controll-chart-pie').click(event, () => {
+            this.editor.insert('```chart\n{\n  "type": "pie",\n  "data": {\n    "labels": [\n      "Red",\n      "Blue",\n      "Yellow"\n    ],\n    "datasets": [\n      {\n        "data": [\n          300,\n          50,\n          100\n        ],\n        "backgroundColor": [\n          "#FF6384",\n          "#36A2EB",\n          "#FFCE56"\n        ],\n        "hoverBackgroundColor": [\n          "#FF6384",\n          "#36A2EB",\n          "#FFCE56"\n        ]\n      }\n    ]\n  },\n  "options": {}\n}\n```');
+            $('.editor-markdown').focus();
+        });
     }
 
     resizeEditor() {
