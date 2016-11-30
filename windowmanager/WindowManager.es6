@@ -26,12 +26,17 @@ module.exports = class WindowManager {
 
         win.on('closed', () => {
             this.removeWindow(win);
+            this.currentWindow = null;
         });
 
         this.windows.push(win);
     }
 
     deleteCurrentWindow() {
+        if (this.currentWindow == null) {
+            return;
+        }
+
         this.currentWindow.close();
     }
 
