@@ -52,6 +52,10 @@ class EditorWindow {
         $('#editor-controll-chart-rader').click(event, () => {
             this.editor.insert('```chart\n{\n  "type": "radar",\n  "data": {\n    "labels": [\n      "Eating",\n      "Drinking",\n      "Sleeping",\n      "Designing",\n      "Coding",\n      "Cycling",\n      "Running"\n    ],\n    "datasets": [\n      {\n        "label": "My First dataset",\n        "backgroundColor": "rgba(179,181,198,0.2)",\n        "borderColor": "rgba(179,181,198,1)",\n        "pointBackgroundColor": "rgba(179,181,198,1)",\n        "pointBorderColor": "#fff",\n        "pointHoverBackgroundColor": "#fff",\n        "pointHoverBorderColor": "rgba(179,181,198,1)",\n        "data": [\n          65,\n          59,\n          90,\n          81,\n          56,\n          55,\n          40\n        ]\n      },\n      {\n        "label": "My Second dataset",\n        "backgroundColor": "rgba(255,99,132,0.2)",\n        "borderColor": "rgba(255,99,132,1)",\n        "pointBackgroundColor": "rgba(255,99,132,1)",\n        "pointBorderColor": "#fff",\n        "pointHoverBackgroundColor": "#fff",\n        "pointHoverBorderColor": "rgba(255,99,132,1)",\n        "data": [\n          28,\n          48,\n          40,\n          19,\n          96,\n          27,\n          100\n        ]\n      }\n    ]\n  },\n  "options": {}\n}\n```');
         });
+
+        $('#editor-controll-chart-polar').click(event, () => {
+            this.editor.insert('```chart\n{\n  "type": "polarArea",\n  "data": {\n    "datasets": [\n      {\n        "data": [\n          11,\n          16,\n          7,\n          3,\n          14\n        ],\n        "backgroundColor": [\n          "#FF6384",\n          "#4BC0C0",\n          "#FFCE56",\n          "#E7E9ED",\n          "#36A2EB"\n        ],\n        "label": "My dataset"\n      }\n    ],\n    "labels": [\n      "Red",\n      "Green",\n      "Yellow",\n      "Grey",\n      "Blue"\n    ]\n  },\n  "options": {}\n}\n```');
+        });
     }
 
     resizeEditor() {
